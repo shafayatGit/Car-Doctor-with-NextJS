@@ -3,16 +3,27 @@ import React from "react";
 import Link from "next/link";
 import { FaFacebookF, FaLinkedinIn, FaGoogle } from "react-icons/fa";
 import SocialLogin from "@/app/login/Components/SocialLogin";
-// import { registerUser } from "@/app/actions/auth/registerUser";
-// import SocialLogin from "@/app/login/components/SocialLogin";
+import { registerUser } from "@/app/actions/auth/registerUser";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 export default function RegisterForm() {
+  const router = useRouter();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    await registerUser({ name, email, password });
+    await registerUser({ name, email, password })
+      .then((res) => {
+        if (res.acknowledged === true) {
+          toast.success("LoggedIn successfully!");
+          router.push("/");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-lg space-y-8">
