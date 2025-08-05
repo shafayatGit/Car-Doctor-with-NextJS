@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-// import { signIn } from "next-auth/react";
 import { FaGithub } from "react-icons/fa6";
 import { FaGoogle } from "react-icons/fa";
 import Link from "next/link";
