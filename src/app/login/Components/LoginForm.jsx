@@ -1,7 +1,5 @@
 "use client";
 import React from "react";
-import { FaGithub } from "react-icons/fa6";
-import { FaGoogle } from "react-icons/fa";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
