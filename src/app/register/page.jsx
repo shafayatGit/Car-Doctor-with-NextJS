@@ -3,8 +3,6 @@ import Image from "next/image";
 import React from "react";
 import RegisterForm from "./Components/RegisterForm";
 
-// import RegisterForm from "./components/RegisterForm";
-
 export default function RegisterPage() {
   return (
     <>
