@@ -8,7 +8,7 @@ export default async function checkoutPage({ params }) {
   console.log(data);
   return (
     <div>
-      <CheckoutForm></CheckoutForm>
+      <CheckoutForm data={data}></CheckoutForm>
     </div>
   );
 }
