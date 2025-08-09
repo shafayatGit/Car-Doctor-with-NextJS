@@ -1,15 +1,15 @@
-import dbConnect from '@/lib/dbConnect';
-import { ObjectId } from 'mongodb';
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react'
+import dbConnect from "@/lib/dbConnect";
+import { ObjectId } from "mongodb";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
 
-export default async function ServiceDetailsPage({params}) {
-    const p = await params;
-    const servicesCollection = await dbConnect("services");
-    const data = await servicesCollection.findOne({_id: new ObjectId(p.id)});
+export default async function ServiceDetailsPage({ params }) {
+  const p = await params;
+  const res = await fetch(`http://localhost:3000/api/service/${p.id}`);
+  const data = await res.json();
   return (
-        <div className="container mx-auto">
+    <div className="container mx-auto">
       <section className="flex justify-center ">
         <figure className="relative">
           <Image
@@ -53,5 +53,5 @@ export default async function ServiceDetailsPage({params}) {
         </div>
       </section>
     </div>
-  )
+  );
 }
