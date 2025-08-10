@@ -6,7 +6,7 @@ import React from "react";
 
 export default function NavBar() {
     const { data: session, status } = useSession();
-//   console.log(session);
+  // console.log(session);
   const navMenu = () => {
     return (
       <>

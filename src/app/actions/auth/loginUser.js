@@ -9,10 +9,11 @@ export const loginUser = async (payload) => {
 
   const userCollection = dbConnect("user");
   const user = await userCollection.findOne({ email });
+  // console.log(user.password)
 
   if (!user) return null;
   const isPassOk = await bcrypt.compare(user.password, password);
   if (!isPassOk) return null;
 
-  return user;
+  return(user);
 };

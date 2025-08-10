@@ -1,8 +1,11 @@
-import { loginUser } from "@/app/actions/auth/loginUser";
+// import { loginUser } from "@/app/actions/auth/loginUser";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import GitHubProvider from "next-auth/providers/github";
+import { signIn } from "next-auth/react";
+import { loginUser } from "@/app/actions/auth/loginUser";
 import dbConnect from "./dbConnect";
+// import dbConnect, { collectionNamesObj } from "./dbConnect";
 export const authOptions = {
   // Configure one or more authentication providers
   providers: [
@@ -14,24 +17,14 @@ export const authOptions = {
       // e.g. domain, username, password, 2FA token, etc.
       // You can pass any HTML attribute to the <input> tag through the object.
       credentials: {
-        email: {
-          label: "Email",
-          type: "email",
-          placeholder: "Type Your Email",
-        },
-        password: {
-          label: "Password",
-          type: "password",
-          placeholder: "Type Your Password",
-        },
+        email: { label: "Email", type: "text", placeholder: "Enter Email" },
+        password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
-        console.log(credentials)
+        // console.log(credentials)
         // Add logic here to look up the user from the credentials supplied
         const user = await loginUser(credentials);
         console.log(user)
-        
-
         if (user) {
           // Any object returned will be saved in `user` property of the JWT
           return user;
@@ -55,27 +48,27 @@ export const authOptions = {
   pages: {
     signIn: "/login",
   },
-  // callbacks: {
-  //   async signIn({ user, account, profile, email, credentials }) {
-  //     // Console these to check necessary properites
-  //     //console.log({ user, account, profile, email, credentials })
-  //     if (account) {
-  //       const { providerAccountId, provider } = account;
-  //       const { email: user_email, image, name } = user;
-  //       const userCollection = dbConnect("user");
-  //       const isExisted = await userCollection.findOne({ providerAccountId });
-  //       if (!isExisted) {
-  //         const payload = {
-  //           providerAccountId,
-  //           provider,
-  //           email: user_email,
-  //           image,
-  //           name,
-  //         };
-  //         await userCollection.insertOne(payload);
-  //       }
-  //     }
-  //     return true;
-  //   },
-  // },
+  callbacks: {
+    async signIn({ user, account, profile, email, credentials }) {
+      // Console these to check necessary properites
+      console.log({ user, account, profile, email, credentials });
+      if (account) {
+        const { providerAccountId, provider } = account;
+        const { email: user_email, image, name } = user;
+        const userCollection = dbConnect("user");
+        const isExisted = await userCollection.findOne({ providerAccountId });
+        if (!isExisted) {
+          const payload = {
+            providerAccountId,
+            provider,
+            email: user_email,
+            image,
+            name,
+          };
+          await userCollection.insertOne(payload);
+        }
+      }
+      return true;
+    },
+  },
 };
