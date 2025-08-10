@@ -26,10 +26,11 @@ export const authOptions = {
         },
       },
       async authorize(credentials, req) {
-        // console.log(credentials)
+        console.log(credentials)
         // Add logic here to look up the user from the credentials supplied
         const user = await loginUser(credentials);
-        console.log(user);
+        console.log(user)
+        
 
         if (user) {
           // Any object returned will be saved in `user` property of the JWT
@@ -54,27 +55,27 @@ export const authOptions = {
   pages: {
     signIn: "/login",
   },
-  callbacks: {
-    async signIn({ user, account, profile, email, credentials }) {
-      // Console these to check necessary properites
-      //console.log({ user, account, profile, email, credentials })
-      if (account) {
-        const { providerAccountId, provider } = account;
-        const { email: user_email, image, name } = user;
-        const userCollection = dbConnect("user");
-        const isExisted = await userCollection.findOne({ providerAccountId });
-        if (!isExisted) {
-          const payload = {
-            providerAccountId,
-            provider,
-            email: user_email,
-            image,
-            name,
-          };
-          await userCollection.insertOne(payload);
-        }
-      }
-      return true;
-    },
-  },
+  // callbacks: {
+  //   async signIn({ user, account, profile, email, credentials }) {
+  //     // Console these to check necessary properites
+  //     //console.log({ user, account, profile, email, credentials })
+  //     if (account) {
+  //       const { providerAccountId, provider } = account;
+  //       const { email: user_email, image, name } = user;
+  //       const userCollection = dbConnect("user");
+  //       const isExisted = await userCollection.findOne({ providerAccountId });
+  //       if (!isExisted) {
+  //         const payload = {
+  //           providerAccountId,
+  //           provider,
+  //           email: user_email,
+  //           image,
+  //           name,
+  //         };
+  //         await userCollection.insertOne(payload);
+  //       }
+  //     }
+  //     return true;
+  //   },
+  // },
 };

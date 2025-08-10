@@ -21,9 +21,7 @@ export default function RegisterForm() {
           router.push("/");
         }
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      
   };
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-lg space-y-8">

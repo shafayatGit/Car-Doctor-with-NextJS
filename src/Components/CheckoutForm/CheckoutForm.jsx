@@ -39,7 +39,7 @@ const CheckoutForm = ({ data }) => {
         body: JSON.stringify(bookingPayload)
     })
     const postedData = await res.json();
-    console.log(postedData)
+    console.log(postedData);
   };
 
   return (

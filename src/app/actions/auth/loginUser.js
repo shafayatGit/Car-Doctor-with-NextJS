@@ -5,11 +5,14 @@ import bcrypt from "bcrypt";
 
 export const loginUser = async (payload) => {
   const { email, password } = payload;
+  // console.log(email, password);
 
-  const userCollection = await dbConnect("user");
+  const userCollection = dbConnect("user");
   const user = await userCollection.findOne({ email });
-  if (!email) return null;
+
+  if (!user) return null;
   const isPassOk = await bcrypt.compare(user.password, password);
   if (!isPassOk) return null;
+
   return user;
 };
