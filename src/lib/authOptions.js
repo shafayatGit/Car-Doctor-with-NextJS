@@ -24,7 +24,7 @@ export const authOptions = {
         // console.log(credentials)
         // Add logic here to look up the user from the credentials supplied
         const user = await loginUser(credentials);
-        console.log(user)
+        // console.log(user)
         if (user) {
           // Any object returned will be saved in `user` property of the JWT
           return user;
@@ -45,13 +45,14 @@ export const authOptions = {
       clientSecret: process.env.GITHUB_SECRET,
     }),
   ],
+  secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: "/login",
   },
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
       // Console these to check necessary properites
-      console.log({ user, account, profile, email, credentials });
+      // console.log({ user, account, profile, email, credentials });
       if (account) {
         const { providerAccountId, provider } = account;
         const { email: user_email, image, name } = user;

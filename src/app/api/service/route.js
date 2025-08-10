@@ -6,12 +6,12 @@ import { NextResponse } from "next/server";
 
 export const GET = async (req) => {
   const session = await getServerSession(authOptions);
+  // console.log(session)
   if (session) {
-    console.log(session)
-    // const email = session?.user?.email;
-    // const bookingCollection = dbConnect("bookings");
-    // const result = await bookingCollection.find({ email }).toArray();
-    // return NextResponse.json(result);
+    const email = session?.user?.email;
+    const bookingCollection = dbConnect("bookings");
+    const result = await bookingCollection.find({ email }).toArray();
+    return NextResponse.json(result);
   }
   return NextResponse.json({});
 };
