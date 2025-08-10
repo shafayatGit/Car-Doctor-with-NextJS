@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FaRegEdit } from "react-icons/fa";
+import DeleteBookingButton from "../DeleteBookingButton/DeleteBookingButton";
 
 const MyAllBookings = ({ data }) => {
     // console.log(data)
@@ -46,7 +47,7 @@ const MyAllBookings = ({ data }) => {
                   </td>
 
                   <td>
-                    {/* <DeleteBookingButton id={item._id} /> */}
+                    <DeleteBookingButton id={item._id}></DeleteBookingButton>
                   </td>
                 </tr>
               );
