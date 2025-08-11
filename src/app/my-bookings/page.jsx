@@ -2,8 +2,6 @@
 import MyAllBookings from "@/Components/myAllBookings/myAllBookings";
 import { headers } from "next/headers";
 import React from "react";
-// import { useEffect } from "react";
-// import { useState } from "react";
 
 const fetchMyBookings = async () => {
   const res = await fetch(
