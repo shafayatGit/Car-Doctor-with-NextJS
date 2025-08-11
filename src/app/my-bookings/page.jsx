@@ -1,6 +1,5 @@
 // "use client";
 import MyAllBookings from "@/Components/myAllBookings/myAllBookings";
-// import MyAllBookingsTable from "@/components/tables/MyBookingsTable";
 import { headers } from "next/headers";
 import React from "react";
 // import { useEffect } from "react";
