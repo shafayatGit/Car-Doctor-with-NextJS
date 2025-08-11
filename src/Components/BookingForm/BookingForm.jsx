@@ -24,7 +24,7 @@ export default function BookingForm({data}) {
       address,
 
     };
-    const res = await fetch(`http://localhost:3000/api/my-bookings/${data._id}`,{
+    const res = await fetch(`https://nextjs-car-doctor-lime.vercel.app/api/my-bookings/${data._id}`,{
         method: "PATCH",
         body: JSON.stringify(bookingPayload)
     })
@@ -35,8 +35,8 @@ export default function BookingForm({data}) {
   return (
     <div className="my-10">
       <div className="w-11/12 mx-auto">
-        <h2 className="text-center text-3xl mb-4">
-          Book Service : {data?.title}
+        <h2 className="mt-10 mb-10 text-center text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-orange-400">
+          Book Service : {data?.service_name}
         </h2>
         <form onSubmit={handleBookService}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

@@ -3,7 +3,7 @@ import React from "react";
 
 export default async function checkoutPage({ params }) {
   const p = await params;
-  const res = await fetch(`http://localhost:3000/api/service/${p.id}`);
+  const res = await fetch(`https://nextjs-car-doctor-lime.vercel.app/api/service/${p.id}`);
   const data = await res.json();
   console.log(data);
   return (

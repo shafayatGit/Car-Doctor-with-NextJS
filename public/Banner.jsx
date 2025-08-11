@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 // import img1 from "../../../assets/images/banner/1.jpg";
@@ -9,24 +9,21 @@ import { useEffect, useState } from "react";
 const slides = [
   {
     id: 1,
-    image:
-      "/1.jpg",
+    image: "/1.jpg",
     title: "Affordable Price For Car Servicing",
     subtitle:
       "There are many variations of passages of  available, but the majority have suffered alteration in some form",
   },
   {
     id: 2,
-    image:
-      "/2.jpg",
+    image: "/2.jpg",
     title: "Affordable Price For Car Servicing",
     subtitle:
       "There are many variations of passages of  available, but the majority have suffered alteration in some form",
   },
   {
     id: 3,
-    image:
-      "/3.jpg",
+    image: "/3.jpg",
     title: "Affordable Price For Car Servicing",
     subtitle:
       "There are many variations of passages of  available, but the majority have suffered alteration in some form",
@@ -47,16 +44,16 @@ const Banner = () => {
   return (
     <div className="relative w-full" style={{ height: "100dvh" }}>
       {slides.map((slide, index) => (
-          // console.log(slide.image)
-          <div
+        // console.log(slide.image)
+        <div
           key={slide.id}
           className={`absolute inset-0 transition-opacity duration-1000 ${
-              index === current ? "opacity-100 z-10" : "opacity-0 z-0"
-            }`}
-            >
+            index === current ? "opacity-100 z-10" : "opacity-0 z-0"
+          }`}
+        >
           <Image
-          width={500}
-          height={500}
+            width={500}
+            height={500}
             src={slide.image}
             alt={slide.title}
             className="w-full h-full object-cover"
@@ -68,6 +65,12 @@ const Banner = () => {
             <p className="text-lg md:text-2xl drop-shadow-lg">
               {slide.subtitle}
             </p>
+            <div className="mt-10">
+              <button className="btn rounded-full btn-primary mr-5">Discover More</button>
+              <button className="btn rounded-full btn-outline btn-secondary">
+                Latest Project
+              </button>
+            </div>
           </div>
         </div>
       ))}
