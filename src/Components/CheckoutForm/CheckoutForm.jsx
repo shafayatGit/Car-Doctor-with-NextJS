@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 
 const CheckoutForm = ({ data }) => {
   const { data: session } = useSession();
-//   console.log(session);
+  //   console.log(session);
 
   const handleBookService = async (e) => {
     toast("Submitting Booking...");
@@ -34,10 +34,10 @@ const CheckoutForm = ({ data }) => {
       service_img: data.img,
       service_price: data.price,
     };
-    const res = await fetch("http://localhost:3000/api/service",{
-        method: "POST",
-        body: JSON.stringify(bookingPayload)
-    })
+    const res = await fetch("http://localhost:3000/api/service", {
+      method: "POST",
+      body: JSON.stringify(bookingPayload),
+    });
     const postedData = await res.json();
     console.log(postedData);
   };
@@ -60,6 +60,7 @@ const CheckoutForm = ({ data }) => {
                 type="text"
                 name="name"
                 className="input input-bordered"
+                required
               />
             </div>
 
@@ -68,6 +69,7 @@ const CheckoutForm = ({ data }) => {
                 <span className="label-text">Email</span>
               </label>
               <input
+                required
                 defaultValue={session?.user?.email}
                 readOnly
                 type="text"
@@ -92,7 +94,12 @@ const CheckoutForm = ({ data }) => {
               <label className="label">
                 <span className="label-text">Date</span>
               </label>
-              <input type="date" name="date" className="input input-bordered" />
+              <input
+                required
+                type="date"
+                name="date"
+                className="input input-bordered"
+              />
             </div>
             <div className="form-control">
               <label className="label">
@@ -114,6 +121,7 @@ const CheckoutForm = ({ data }) => {
                 name="address"
                 placeholder="Your Address"
                 className="input input-bordered"
+                required
               />
             </div>
           </div>
